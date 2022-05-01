@@ -7,6 +7,7 @@ NUMBER_FILE_PATH = './data/number.txt'
 RESULT_PATH = './data/result.csv'
 NUMBER_OF_PAIRS = 100
 BIT_LENGTH = 64
+NEGATIVE_SIGN_THRESHOLD=30
 
 def random_number(bit_length):
     s = '0'
@@ -14,12 +15,22 @@ def random_number(bit_length):
         s += str(rd.randint(0, 1))
     return s
 
+def get_negative_sign():
+    return rd.randint(1, 100) <= NEGATIVE_SIGN_THRESHOLD
+
+def get_number(bin_string, is_negative):
+    num = int(bin_string, 2)
+    return -num if is_negative else num
+
 def random_file():
     f = open(NUMBER_FILE_PATH, "w")
     for i in range(NUMBER_OF_PAIRS):
         a = random_number(BIT_LENGTH)
+        negative_a = get_negative_sign()
         b = random_number(BIT_LENGTH)
-        f.write(str(int(a, 2)) + " " + str(int(b, 2)) + "\n")
+        negative_b = get_negative_sign()
+        
+        f.write(str(get_number(a, negative_a)) + " " + str(get_number(b, negative_b)) + "\n")
     f.close()
 
 def read_file():
@@ -38,7 +49,6 @@ def euclid_mod(a, b):
 
 def euclid_gcd(a, b, step=0): 
     step += 1
-
     if a == 0:
         return b, step
     return euclid_gcd(euclid_mod(b, a), a, step)
@@ -63,7 +73,7 @@ def experiment():
 
 def write_result(rs):
     f = open(RESULT_PATH, "w+")
-    f.write(",".join(["a", "b", "gcd", "time_ms", "step"]) + '\n')
+    f.write(",".join(["a", "b", "gcd", "step", "time_ms"]) + '\n')
     for r in rs:
         print(r)
         f.write("%d,%d,%d,%d,%d\n" % (r["a"], r["b"], r["gcd"], r["step"], r["time_ms"]))
