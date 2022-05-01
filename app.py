@@ -4,7 +4,9 @@ import random as rd
 from time import time_ns
 
 NUMBER_FILE_PATH = './data/number.txt'
-RESULT_PATH = './data/result.txt'
+RESULT_PATH = './data/result.csv'
+NUMBER_OF_PAIRS = 100
+BIT_LENGTH = 64
 
 def random_number(bit_length):
     s = '0'
@@ -14,9 +16,9 @@ def random_number(bit_length):
 
 def random_file():
     f = open(NUMBER_FILE_PATH, "w")
-    for i in range(1, 50):
-        a = random_number(64)
-        b = random_number(64)
+    for i in range(NUMBER_OF_PAIRS):
+        a = random_number(BIT_LENGTH)
+        b = random_number(BIT_LENGTH)
         f.write(str(int(a, 2)) + " " + str(int(b, 2)) + "\n")
     f.close()
 
