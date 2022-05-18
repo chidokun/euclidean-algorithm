@@ -5,7 +5,7 @@ NUMBER_FILE_PATH = './data/bezout_number.txt'
 RESULT_PATH = './data/bezout_result.csv'
 
 def extended_gcd(a, b):
-  old_r, r = a, b
+  old_r, r = abs(a), abs(b)
   old_x, x = 1, 0
   old_y, y = 0, 1
 
@@ -44,3 +44,11 @@ print(ls)
 result = experiment(ls)
 print(result)
 write_result(result, RESULT_PATH)
+
+print(extended_gcd(13, 3))
+print(extended_gcd(13, -3))
+print(extended_gcd(-13, 3))
+print(extended_gcd(-13, -3))
+print(extended_gcd(3, 0))
+print(extended_gcd(0, 3))
+print(extended_gcd(0, 0))
