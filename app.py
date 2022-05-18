@@ -22,8 +22,8 @@ def get_number(bin_string, is_negative):
     num = int(bin_string, 2)
     return -num if is_negative else num
 
-def random_file():
-    f = open(NUMBER_FILE_PATH, "w")
+def random_file(path: str):
+    f = open(path, "w")
     for i in range(NUMBER_OF_PAIRS):
         a = random_number(BIT_LENGTH)
         negative_a = get_negative_sign()
@@ -33,8 +33,8 @@ def random_file():
         f.write(str(get_number(a, negative_a)) + " " + str(get_number(b, negative_b)) + "\n")
     f.close()
 
-def read_file():
-    f = open(NUMBER_FILE_PATH, "r")
+def read_file(path: str):
+    f = open(path, "r")
     ls = f.readlines()
     f.close()
     result = []
@@ -71,8 +71,8 @@ def experiment():
         })
     return result
 
-def write_result(rs):
-    f = open(RESULT_PATH, "w+")
+def write_result(rs, path: str):
+    f = open(path, "w+")
     f.write(",".join(["a", "b", "gcd", "step", "time_ms"]) + '\n')
     for r in rs:
         print(r)
@@ -88,13 +88,13 @@ print(euclid_gcd(3, 0))
 print(euclid_gcd(0, 3))
 print(euclid_gcd(0, 0))
 
-random_file()
-ls = read_file()
+random_file(NUMBER_FILE_PATH)
+ls = read_file(NUMBER_FILE_PATH)
 print(ls)
 
 result = experiment()
 print(result)
-write_result(result)
+write_result(result, RESULT_PATH)
 
 
 
