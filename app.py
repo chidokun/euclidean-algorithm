@@ -4,7 +4,7 @@ import random as rd
 from time import time_ns
 
 NUMBER_FILE_PATH = './data/number.txt'
-RESULT_PATH = './data/result.csv'
+RESULT_PATH = './data/result2.csv'
 NUMBER_OF_PAIRS = 100
 BIT_LENGTH = 64
 NEGATIVE_SIGN_THRESHOLD=30
@@ -49,9 +49,14 @@ def euclid_mod(a, b):
 
 def euclid_gcd(a, b, step=0): 
     step += 1
-    if a == 0:
-        return b, step
-    return euclid_gcd(euclid_mod(b, a), a, step)
+    if b == 0:
+        return abs(a), step
+    return euclid_gcd(b, euclid_mod(a, b), step)
+
+# 1 gcd(-13, 3) = gcd(3, -13 mod 3) = gcd(3, 2)
+# 2 gcd(3, 2) = gcd(2, 3 mod 2) = gcd(2, 1)
+# 3 gcd(2, 1) = gcd(1, 2 mod 1) = gcd(1, 1)
+# 4 gcd(1, 0) = 1
 
 def experiment():
     result = []
