@@ -84,22 +84,22 @@ def write_result(rs, path: str):
         f.write("%d,%d,%d,%d,%d\n" % (r["a"], r["b"], r["gcd"], r["step"], r["time_ms"]))
     f.close()
 
+def main():
+    print(euclid_gcd(13, 3))
+    print(euclid_gcd(13, -3))
+    print(euclid_gcd(-13, 3))
+    print(euclid_gcd(-13, -3))
+    print(euclid_gcd(3, 0))
+    print(euclid_gcd(0, 3))
+    print(euclid_gcd(0, 0))
 
-print(euclid_gcd(13, 3))
-print(euclid_gcd(13, -3))
-print(euclid_gcd(-13, 3))
-print(euclid_gcd(-13, -3))
-print(euclid_gcd(3, 0))
-print(euclid_gcd(0, 3))
-print(euclid_gcd(0, 0))
+    random_file(NUMBER_FILE_PATH)
+    ls = read_file(NUMBER_FILE_PATH)
+    print(ls)
 
-random_file(NUMBER_FILE_PATH)
-ls = read_file(NUMBER_FILE_PATH)
-print(ls)
+    result = experiment()
+    print(result)
+    write_result(result, RESULT_PATH)
 
-result = experiment()
-print(result)
-write_result(result, RESULT_PATH)
-
-
-
+if __name__ == "__main__":
+    main()
