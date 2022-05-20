@@ -45,7 +45,7 @@ def read_file(path: str):
     return result;
 
 def euclid_mod(a, b):
-    return euclid_mod(a, -b) if b < 0 else a % b
+    return a % -b if b < 0 else a % b
 
 def euclid_gcd(a, b, step=0): 
     step += 1
