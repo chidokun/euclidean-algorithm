@@ -4,7 +4,7 @@ import random as rd
 from time import time_ns
 
 NUMBER_FILE_PATH = './data/number.txt'
-RESULT_PATH = './data/result2.csv'
+RESULT_PATH = './data/result.csv'
 NUMBER_OF_PAIRS = 100
 BIT_LENGTH = 64
 NEGATIVE_SIGN_THRESHOLD=30
@@ -58,7 +58,7 @@ def euclid_gcd(a, b, step=0):
 # 3 gcd(2, 1) = gcd(1, 2 mod 1) = gcd(1, 1)
 # 4 gcd(1, 0) = 1
 
-def experiment():
+def experiment(ls):
     result = []
     for i in ls:
         a = i[0]
@@ -93,11 +93,11 @@ def main():
     print(euclid_gcd(0, 3))
     print(euclid_gcd(0, 0))
 
-    random_file(NUMBER_FILE_PATH)
+    # random_file(NUMBER_FILE_PATH)
     ls = read_file(NUMBER_FILE_PATH)
     print(ls)
 
-    result = experiment()
+    result = experiment(ls)
     print(result)
     write_result(result, RESULT_PATH)
 
